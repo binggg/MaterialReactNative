@@ -7,8 +7,6 @@ import React, {
     Text
 } from 'react-native';
 import { Button, TYPO, COLOR  } from 'react-native-material-design-components';
-import { typography,color } from 'react-native-material-design-styles'
-
 
 var typographyStyle = StyleSheet.create(TYPO);
 
@@ -26,19 +24,18 @@ export default class ButtonExample extends Component {
         var { primary } =  this.props;
         var primaryColor = COLOR[`${primary}500`];
         return (
-            <ScrollView>
+            <View>
                 <View style={styles.content}>
                     <Text style={[typographyStyle.paperFontHeadline, primaryColor]}>Button</Text>
                 </View>
 
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
+                <View style={styles.content} onPress={()=> console.log(this.refs)}>
+                    <Text style={typographyStyle.paperFontSubhead}>Light Theme1</Text>
                 </View>
                 <View style={{
                         padding: 16,
-                        flex:1
-                    }}>
-                    <Button value="NORMAL FLAT" primary={primary}/>
+                    }} onPress={()=> console.log(this.refs)}>
+                    <Button value="NORMAL FLAT" primary={primary} onPress={()=> console.log(this.refs)}/>
                     <Button value="DISABLED FLAT" disabled={true} primary={primary}/>
                     <Button value="NORMAL RAISED" raised={true} primary={primary}/>
                     <Button value="DISABLED RAISED" disabled={true} raised={true} primary={primary}/>
@@ -49,14 +46,14 @@ export default class ButtonExample extends Component {
                 <View style={{
                         backgroundColor: COLOR.paperGrey900.color,
                         padding: 16,
-                        flex:1
+
                     }}>
                     <Button value="NORMAL FLAT" theme="dark" primary={primary}/>
                     <Button value="DISABLED FLAT" disabled={true} theme="dark" primary={primary}/>
                     <Button value="NORMAL RAISED" theme="dark" raised={true} primary={primary}/>
                     <Button value="DISABLED RAISED" disabled={true} theme="dark" raised={true} primary={primary}/>
                 </View>
-            </ScrollView>
+            </View>
         );
     }
 }

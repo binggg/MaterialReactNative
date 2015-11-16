@@ -2,23 +2,20 @@ import React, {
     Component,
     AppRegistry,
     StyleSheet,
-    View
 } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
-import getRoute from './routers.js';
+import Main from './redux/containers/Main';
 
 const store = configureStore();
 
 export default class MaterialReactNative extends Component {
     render = () => {
-        let component = getRoute(store);
         return (
             <Provider store={store}>
-                {component}
+                <Main />
             </Provider>
         )
-    }
+    };
 }
-
 AppRegistry.registerComponent('MaterialReactNative', () => MaterialReactNative);
