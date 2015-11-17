@@ -26,15 +26,9 @@ export default class ButtonExample extends Component {
         return (
             <View>
                 <View style={styles.content}>
-                    <Text style={[typographyStyle.paperFontHeadline, primaryColor]}>Button</Text>
+                    <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
                 </View>
-
-                <View style={styles.content} onPress={()=> console.log(this.refs)}>
-                    <Text style={typographyStyle.paperFontSubhead}>Light Theme1</Text>
-                </View>
-                <View style={{
-                        padding: 16,
-                    }} onPress={()=> console.log(this.refs)}>
+                <View style={styles.content}>
                     <Button value="NORMAL FLAT" primary={primary} onPress={()=> console.log(this.refs)}/>
                     <Button value="DISABLED FLAT" disabled={true} primary={primary}/>
                     <Button value="NORMAL RAISED" raised={true} primary={primary}/>
