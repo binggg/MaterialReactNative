@@ -12,18 +12,22 @@ import React, {
 import { connect } from 'react-redux';
 import configureStore from '../../configureStore';
 import {
-    Button,
     TYPO,
     COLOR,
+    Button,
     Icon,
-    Toolbar
+    Toolbar,
 } from 'react-native-material-design-components';
 import { CHANGE_PRIMARY, changePrimary } from '../modules/main';
+import TypographyExample from '../../components/TypographyExample';
 import ColorExample from '../../components/ColorExample';
 import ButtonExample from '../../components/ButtonExample';
 import RadioButtonExample from '../../components/RadioButtonExample';
 import CheckboxExample from '../../components/CheckboxExample';
+import IconExample from '../../components/IconExample';
 import ChangeTheme from './ChangeTheme';
+
+console.log(IconExample)
 
 const store = configureStore();
 const routes = [
@@ -47,6 +51,9 @@ const routes = [
         name: 'Checkbox',
     },
     {
+        name: 'Icon',
+    },
+    {
         name: 'ChangeTheme',
     }
 ];
@@ -62,12 +69,16 @@ export default class Main extends Component {
         var navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <View style={ [styles.drawerCover,{backgroundColor: COLOR[`${main.primary}700`].color}]}>
-                   <Text style={[TYPO.paperFontDisplay2, COLOR[`${main.primary}300`]]}>
-                       Material React Native
-                   </Text>
+                    <Icon name="google"
+                          color='rgba(0,0,0,.30)'
+                          size={140}
+                          style={styles.google}/>
+                    <Text style={[TYPO.paperFontDisplay2, COLOR[`${main.primary}300`]]}>
+                        Material React Native
+                    </Text>
                 </View>
 
-                <View style={styles.page}>
+                <ScrollView style={styles.page}>
                     {routes.map(route => (
                         <Button
                             primary={this.props.main.primary}
@@ -77,7 +88,7 @@ export default class Main extends Component {
                             )}}
                             value={route.text || route.name}/>
                     ))}
-                </View>
+                </ScrollView>
             </View>
         );
         return (
@@ -128,6 +139,20 @@ export default class Main extends Component {
                         </ScrollView>
                     </View>
                 );
+            case 'Typography':
+                return (
+                    <View style={styles.page}>
+                        <Toolbar
+                            navIconName="menu"
+                            title={route.name}
+                            primary={this.props.main.primary}
+                            onIconClicked={()=>this.drawerRef.openDrawer()}
+                        />
+                        <ScrollView style={styles.page}>
+                            <TypographyExample primary={this.props.main.primary}/>
+                        </ScrollView>
+                    </View>
+                );
             case 'Button':
                 return (
                     <View style={styles.page}>
@@ -170,6 +195,20 @@ export default class Main extends Component {
                         </ScrollView>
                     </View>
                 );
+            case 'Icon':
+                return (
+                    <View style={styles.page}>
+                        <Toolbar
+                            navIconName="menu"
+                            title={route.name}
+                            primary={this.props.main.primary}
+                            onIconClicked={()=>this.drawerRef.openDrawer()}
+                        />
+                        <View style={styles.page}>
+                            <IconExample primary={this.props.main.primary}/>
+                        </View>
+                    </View>
+                );
             case 'ChangeTheme':
                 return (
                     <View style={styles.page}>
@@ -192,11 +231,18 @@ const styles = StyleSheet.create({
     page: {
         flex: 1
     },
+    content: {
+        padding: 16
+    },
     drawerCover: {
         height: 168,
         padding: 16,
         justifyContent: 'center',
         backgroundColor: 'rgba(0,0,0,.2)'
+    },
+    google: {
+        position: 'absolute',
+        bottom: 16,
     }
 });
 
