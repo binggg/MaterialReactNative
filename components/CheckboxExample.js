@@ -6,7 +6,7 @@ import React, {
     ScrollView,
     Text
 } from 'react-native';
-import { Checkbox, CheckboxGroup, TYPO, COLOR  } from 'react-native-material-design-components';
+import { Checkbox, CheckboxGroup, Button, TYPO, COLOR  } from 'react-native-material-design-components';
 
 var typographyStyle = StyleSheet.create(TYPO);
 
@@ -29,24 +29,22 @@ export default class CheckboxExample extends Component {
                 <View style={styles.content}>
                     <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
                 </View>
-                <View style={{
-                        padding: 16,
-                        flex:1
-                    }}>
+                <View>
                     <CheckboxGroup ref="CheckboxGroup1" name="group2" onSelect={(value) => {
                             this.setState({group2Selected: value});
                         }} primary={primary}>
                         <Checkbox value="1" label="Checkbox On" checked={true}/>
                         <Checkbox value="2" label="Checkbox Off"/>
-                        <Checkbox value="3" label="Checkbox Disabled" disabled={true}/>
-                        <Checkbox value="4" label="Checkbox Disabled" disabled={true}/>
-                        <Checkbox value="5"/>
+                        <Checkbox value="3" label="Checkbox On Disabled" checked={true} disabled={true}/>
+                        <Checkbox value="4" label="Checkbox Off Disabled" disabled={true}/>
+                        <Checkbox value="5" checked={true}/>
                         <Checkbox value="6"/>
                     </CheckboxGroup>
+                    <View style={[styles.content,styles.action]}>
+                        <Text style={{flex:1}}>Selected {this.state.group2Selected.join(',')}</Text>
+                        <Button raised={true} value="Press to select 1,2,6" onPress={()=>{this.refs.CheckboxGroup1.value = ['1','2','6']}} />
+                    </View>
 
-                    <Text>Selected {this.state.group2Selected.join(',')}</Text>
-                    <Text onPress={()=>{this.refs.CheckboxGroup1.value = ['1','2','6']}}>Press to select
-                        1,2,6</Text>
                 </View>
 
                 <View style={styles.content}>
@@ -54,15 +52,13 @@ export default class CheckboxExample extends Component {
                 </View>
                 <View style={{
                         backgroundColor: COLOR.paperGrey900.color,
-                        padding: 16,
-                        flex:1
                     }}>
                     <CheckboxGroup checked="1" theme="dark" name="group2" primary={primary}>
                         <Checkbox value="1" label="Checkbox On" checked={true}/>
                         <Checkbox value="2" label="Checkbox Off"/>
-                        <Checkbox value="3" label="Checkbox Disabled" disabled={true}/>
-                        <Checkbox value="4" label="Checkbox Disabled" disabled={true}/>
-                        <Checkbox value="5"/>
+                        <Checkbox value="3" label="Checkbox On Disabled" checked={true} disabled={true}/>
+                        <Checkbox value="4" label="Checkbox Off Disabled" disabled={true}/>
+                        <Checkbox value="5" checked={true}/>
                         <Checkbox value="6"/>
                     </CheckboxGroup>
                 </View>
@@ -75,4 +71,8 @@ const styles = StyleSheet.create({
     content: {
         padding: 16,
     },
+    action: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
 });

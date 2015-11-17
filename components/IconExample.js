@@ -43,7 +43,7 @@ export default class IconExample extends Component {
                         styles.icon
                       }
                 />
-                <Text style={[TYPO.paperFontBody1,styles.text]}>
+                <Text style={[TYPO.paperFontBody1,styles.text,{color: 'rgba(0,0,0,.87)'}]}>
                     {rowData}
                 </Text>
             </View>

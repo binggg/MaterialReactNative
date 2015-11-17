@@ -35,14 +35,14 @@ export default class ButtonExample extends Component {
                 <View style={styles.content}>
                     <Text style={typographyStyle.paperFontSubhead}>Primary</Text>
                 </View>
-                <View style={styles.content}>
-                <RadioButtonGroup value={primary} primary={primary}
-                  onSelect={c => {dispatch(changePrimary(c))}}
-                >
-                    {COLOR_NAMES.map((C) =>
-                        <RadioButton style={styles.radioButton} value={C} key={C} label={C} checked={primary === C}/>
-                    )}
-                </RadioButtonGroup>
+                <View>
+                    <RadioButtonGroup value={primary} primary={primary}
+                      onSelect={c => {dispatch(changePrimary(c))}}
+                    >
+                        {COLOR_NAMES.map((C) =>
+                            <RadioButton style={styles.radioButton} value={C} key={C} label={C} checked={primary === C}/>
+                        )}
+                    </RadioButtonGroup>
                 </View>
             </View>
         );
