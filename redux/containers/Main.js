@@ -17,44 +17,58 @@ import {
     Button,
     Icon,
     Toolbar,
+    List
 } from 'react-native-material-design-components';
-import { CHANGE_PRIMARY, changePrimary } from '../modules/main';
+import {
+    changeRouter,
+    changePrimary
+} from '../modules/main';
 import TypographyExample from '../../components/TypographyExample';
 import ColorExample from '../../components/ColorExample';
 import ButtonExample from '../../components/ButtonExample';
 import RadioButtonExample from '../../components/RadioButtonExample';
 import CheckboxExample from '../../components/CheckboxExample';
 import IconExample from '../../components/IconExample';
+import ListExample from '../../components/ListExample';
 import ChangeTheme from './ChangeTheme';
 
-console.log(IconExample)
-
 const store = configureStore();
-const routes = [
+const routers = [
     {
-        name: 'main',
-        text: 'HOME'
+        name: 'home',
+        text: 'HOME',
+        icon: 'home'
     },
     {
         name: 'Color',
+        icon: 'auto-fix'
     },
     {
         name: 'Typography',
+        icon: 'format-text'
     },
     {
         name: 'Button',
     },
     {
         name: 'RadioButton',
+        icon: 'radiobox-marked'
     },
     {
         name: 'Checkbox',
+        icon: 'checkbox-marked'
     },
     {
         name: 'Icon',
+        icon: 'flower'
+    },
+    {
+        name: 'List',
+        icon: 'view-list'
     },
     {
         name: 'ChangeTheme',
+        icon: 'brush'
     }
 ];
 export default class Main extends Component {
@@ -64,8 +78,12 @@ export default class Main extends Component {
     }
 
     render = () => {
-        let initialRoute = {name: 'main'};
-        let { main } = this.props;
+        let initialRoute = {name: 'home'};
+        let {
+            main,
+            dispatch
+        } = this.props;
+
         var navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <View style={ [styles.drawerCover,{backgroundColor: COLOR[`${main.primary}700`].color}]}>
@@ -77,16 +95,21 @@ export default class Main extends Component {
                         Material React Native
                     </Text>
                 </View>
-
                 <ScrollView style={styles.page}>
-                    {routes.map(route => (
-                        <Button
-                            primary={this.props.main.primary}
+                    {routers.map(router => (
+                        <List
+                            primaryColor={main && router.name === main.currRouter ? COLOR[`${main.primary}500`].color: 'rgba(0,0,0,.87)'}
                             onPress={()=>{
                                 this.drawerRef.closeDrawer();
-                                this.navigatorRef.push({name:route.name}
-                            )}}
-                            value={route.text || route.name}/>
+                                this.navigatorRef.push({name:router.name});
+                                dispatch(changeRouter(router.name));
+                            }}
+                            leftIcon={<Icon
+                                name={router.icon || 'file-document'}
+                                size={24}
+                                color={main && router.name === main.currRouter ? COLOR[`${main.primary}500`].color: 'rgba(0,0,0,.54)'}
+                            />}
+                            primaryText={router.text || router.name}/>
                     ))}
                 </ScrollView>
             </View>
@@ -108,10 +131,10 @@ export default class Main extends Component {
         )
     };
 
-    RouteMapper = (route, navigator) => {
+    RouteMapper = (router, navigator) => {
         this.navigatorRef = navigator;
-        switch (route.name) {
-            case 'main':
+        switch (router.name) {
+            case 'home':
                 return (
                     <View style={styles.page}>
                         <Toolbar
@@ -130,7 +153,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -144,7 +167,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -158,7 +181,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -172,7 +195,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -186,7 +209,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -200,7 +223,7 @@ export default class Main extends Component {
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
@@ -209,12 +232,26 @@ export default class Main extends Component {
                         </View>
                     </View>
                 );
+            case 'List':
+                return (
+                    <View style={styles.page}>
+                        <Toolbar
+                            navIconName="menu"
+                            title={router.name}
+                            primary={this.props.main.primary}
+                            onIconClicked={()=>this.drawerRef.openDrawer()}
+                        />
+                        <View style={styles.page}>
+                            <ListExample primary={this.props.main.primary}/>
+                        </View>
+                    </View>
+                );
             case 'ChangeTheme':
                 return (
                     <View style={styles.page}>
                         <Toolbar
                             navIconName="menu"
-                            title={route.name}
+                            title={router.name}
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
