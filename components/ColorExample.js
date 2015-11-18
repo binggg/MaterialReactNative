@@ -6,7 +6,13 @@ import React, {
     ScrollView,
     Text
 } from 'react-native';
-import { Checkbox, CheckboxGroup, TYPO, COLOR  } from 'react-native-material-design-components';
+import {
+    Checkbox,
+    CheckboxGroup,
+    TYPO,
+    COLOR,
+    Subheader
+} from 'react-native-material-design-components';
 
 const colorTypes = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', 'A100', 'A200', 'A400', 'A700'];
 export default class ColorExample extends Component {
@@ -23,18 +29,14 @@ export default class ColorExample extends Component {
         var { primary } =  this.props;
         return (
             <View>
-                <View style={styles.content}>
-                    <Text style={TYPO.paperFontSubhead}>Text color</Text>
-                </View>
+                <Subheader text="Text Color" />
                 <View style={styles.content}>
                     {colorTypes.map(type => (
                         COLOR[`${primary}${type}`] &&
                         <Text style={[TYPO.paperFontTitle, COLOR[`${primary}${type}`]]}>{primary}{type}</Text>
                     ))}
                 </View>
-                <View style={styles.content}>
-                    <Text style={TYPO.paperFontSubhead}>Background color</Text>
-                </View>
+                <Subheader text="Background Color" />
                 <View style={{height:600}}>
                     {colorTypes.map(type => (
                         COLOR[`${primary}${type}`] &&

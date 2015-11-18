@@ -30,6 +30,7 @@ import RadioButtonExample from '../../components/RadioButtonExample';
 import CheckboxExample from '../../components/CheckboxExample';
 import IconExample from '../../components/IconExample';
 import ListExample from '../../components/ListExample';
+import SubheaderExample from '../../components/SubheaderExample';
 import ChangeTheme from './ChangeTheme';
 
 const store = configureStore();
@@ -65,6 +66,10 @@ const routers = [
     {
         name: 'List',
         icon: 'view-list'
+    },
+    {
+        name: 'Subheader',
+        icon: ''
     },
     {
         name: 'ChangeTheme',
@@ -241,8 +246,22 @@ export default class Main extends Component {
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
-                        <View style={styles.page}>
+                        <ScrollView style={styles.page}>
                             <ListExample primary={this.props.main.primary}/>
+                        </ScrollView>
+                    </View>
+                );
+            case 'Subheader':
+                return (
+                    <View style={styles.page}>
+                        <Toolbar
+                            navIconName="menu"
+                            title={router.name}
+                            primary={this.props.main.primary}
+                            onIconClicked={()=>this.drawerRef.openDrawer()}
+                        />
+                        <View style={styles.page}>
+                            <SubheaderExample primary={this.props.main.primary}/>
                         </View>
                     </View>
                 );

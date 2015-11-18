@@ -6,7 +6,12 @@ import React, {
     ScrollView,
     Text
 } from 'react-native';
-import { Button, TYPO, COLOR  } from 'react-native-material-design-components';
+import {
+    Button,
+    TYPO,
+    COLOR,
+    Subheader
+} from 'react-native-material-design-components';
 
 var typographyStyle = StyleSheet.create(TYPO);
 
@@ -22,21 +27,16 @@ export default class ButtonExample extends Component {
 
     render = () => {
         var { primary } =  this.props;
-        var primaryColor = COLOR[`${primary}500`];
         return (
             <View>
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
-                </View>
+                <Subheader text="Light Theme"/>
                 <View style={styles.content}>
                     <Button value="NORMAL FLAT" primary={primary} onPress={()=> console.log(this.refs)}/>
                     <Button value="DISABLED FLAT" disabled={true} primary={primary}/>
                     <Button value="NORMAL RAISED" raised={true} primary={primary}/>
                     <Button value="DISABLED RAISED" disabled={true} raised={true} primary={primary}/>
                 </View>
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Dark Theme</Text>
-                </View>
+                <Subheader text="Dark Theme"/>
                 <View style={{
                         backgroundColor: COLOR.paperGrey900.color,
                         padding: 16,

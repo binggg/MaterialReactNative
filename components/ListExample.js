@@ -10,7 +10,8 @@ import {
     TYPO,
     COLOR,
     List,
-    Icon
+    Icon,
+    Subheader
 } from 'react-native-material-design-components';
 
 const googleIcon = (<Icon name="google" size={24}/>)
@@ -32,11 +33,23 @@ export default class ListExample extends Component {
             } = this.props;
         return (
             <View>
+                <Subheader text="Text only single-line list" />
+                {data.single.text.map(list => (
+                    <List
+                        primaryText={list.primaryText}/>
+                ))}
+
+                <Subheader text="Icon with text single-line list"/>
+                {data.single.iconText.map(list => (
+                    <List
+                        leftIcon={
+                            <Icon name={list.leftIcon} size={24}/>
+                        }
+                        primaryText={list.primaryText}/>
+                ))}
                 <List
                     leftIcon={googleIcon}
-                    primaryText="Hello List"/>
-                <List
-                    leftIcon={googleIcon}
+                    onLeftIconClicked={()=>{console.log('left Icon Clicked')}}
                     primaryText="Hello List"
                     rightIcon={googleIcon}
                 />
@@ -50,6 +63,22 @@ export default class ListExample extends Component {
                 <List
                     primaryText="List with Avatar"
                     leftAvatar={avatar}
+                    rightIcon={googleIcon}
+                />
+                <List
+                    primaryText="List with Avatar"
+                    leftAvatar={avatar}
+                    rightIcon={googleIcon}
+                />
+                <List
+                    primaryText="List with Avatar"
+                    leftAvatar={avatar}
+                    rightIcon={googleIcon}
+                />
+                <List
+                    primaryText="List with Avatar"
+                    leftAvatar={avatar}
+                    rightIcon={googleIcon}
                 />
             </View>
         );
@@ -61,3 +90,40 @@ const styles = StyleSheet.create({
         padding: 16,
     }
 });
+
+const data = {
+    single:{
+        text:[
+            {
+                primaryText: 'Inbox'
+            },
+            {
+                primaryText: 'Starred'
+            },
+            {
+                primaryText: 'Sent mail'
+            },
+            {
+                primaryText: 'Drafts'
+            }
+        ],
+        iconText:[
+            {
+                primaryText: 'Inbox',
+                leftIcon: 'inbox'
+            },
+            {
+                primaryText: 'Outbox',
+                leftIcon: 'outbox'
+            },
+            {
+                primaryText: 'Trash',
+                leftIcon: 'delete'
+            },
+            {
+                primaryText: 'Spam',
+                leftIcon: 'block-helper'
+            }
+        ]
+    }
+};

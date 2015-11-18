@@ -6,7 +6,14 @@ import React, {
     ScrollView,
     Text
 } from 'react-native';
-import { Checkbox, CheckboxGroup, Button, TYPO, COLOR  } from 'react-native-material-design-components';
+import {
+    Checkbox,
+    CheckboxGroup,
+    Button,
+    TYPO,
+    COLOR,
+    Subheader
+} from 'react-native-material-design-components';
 
 var typographyStyle = StyleSheet.create(TYPO);
 
@@ -26,9 +33,7 @@ export default class CheckboxExample extends Component {
         var { primary } =  this.props;
         return (
             <View>
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
-                </View>
+                <Subheader text="Light Theme" />
                 <View>
                     <CheckboxGroup ref="CheckboxGroup1" name="group2" onSelect={(value) => {
                             this.setState({group2Selected: value});
@@ -46,10 +51,7 @@ export default class CheckboxExample extends Component {
                     </View>
 
                 </View>
-
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Dark Theme</Text>
-                </View>
+                <Subheader text="Dark Theme" />
                 <View style={{
                         backgroundColor: COLOR.paperGrey900.color,
                     }}>

@@ -11,7 +11,8 @@ import {
     RadioButtonGroup,
     Button,
     TYPO,
-    COLOR
+    COLOR,
+    Subheader
 } from 'react-native-material-design-components';
 
 var typographyStyle = StyleSheet.create(TYPO);
@@ -31,9 +32,7 @@ export default class RadioButtonExample extends Component {
         console.log(primary);
         return (
             <View>
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Light Theme</Text>
-                </View>
+                <Subheader text="Light Theme" />
                 <View>
                     <RadioButtonGroup ref="Group1" primary={primary} name="group1" onSelect={(value) => {
                             this.setState({group1Selected: value});
@@ -51,9 +50,7 @@ export default class RadioButtonExample extends Component {
                     </View>
                 </View>
 
-                <View style={styles.content}>
-                    <Text style={typographyStyle.paperFontSubhead}>Dark Theme</Text>
-                </View>
+                <Subheader text="Dark Theme" />
                 <View style={{
                             backgroundColor: COLOR.paperGrey900.color
                         }}>
