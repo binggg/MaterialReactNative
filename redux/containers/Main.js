@@ -83,11 +83,11 @@ export default class Main extends Component {
     }
 
     render = () => {
-        let initialRoute = {name: 'home'};
         let {
             main,
             dispatch
         } = this.props;
+        let initialRoute = {name: main && main.currRouter};
 
         var navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -304,7 +304,9 @@ const styles = StyleSheet.create({
 
 
 function mapStateToProps(state) {
-    return {main} = state;
+    return {
+        main
+    } = state;
 }
 
 export default connect(mapStateToProps)(Main);

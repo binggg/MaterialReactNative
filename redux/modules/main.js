@@ -3,7 +3,7 @@ import createReducer from './createReducer.js'
 export const CHANGE_PRIMARY = 'CHANGE_PRIMARY';
 export const CHANGE_ROUTER = 'CHANGE_ROUTER';
 
-export const main = createReducer({primary: 'paperOrange',currRouter:'home'}, {
+export const main = createReducer({primary: 'paperOrange',currRouter:'List'}, {
     [CHANGE_PRIMARY](state, action) {
         return Object.assign({}, state,{
             primary: action.primary

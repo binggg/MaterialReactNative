@@ -11,7 +11,8 @@ import {
     COLOR,
     List,
     Icon,
-    Subheader
+    Subheader,
+    Avatar
 } from 'react-native-material-design-components';
 
 const googleIcon = (<Icon name="google" size={24}/>)
@@ -33,7 +34,7 @@ export default class ListExample extends Component {
             } = this.props;
         return (
             <View>
-                <Subheader text="Text only single-line list" />
+                <Subheader text="Text only single-line list"/>
                 {data.single.text.map(list => (
                     <List
                         primaryText={list.primaryText}/>
@@ -47,39 +48,28 @@ export default class ListExample extends Component {
                         }
                         primaryText={list.primaryText}/>
                 ))}
-                <List
-                    leftIcon={googleIcon}
-                    onLeftIconClicked={()=>{console.log('left Icon Clicked')}}
-                    primaryText="Hello List"
-                    rightIcon={googleIcon}
-                />
-                <List
-                    primaryText="Hello List"
-                />
-                <List
-                    primaryText="Hello List"
-                    rightIcon={googleIcon}
-                />
-                <List
-                    primaryText="List with Avatar"
-                    leftAvatar={avatar}
-                    rightIcon={googleIcon}
-                />
-                <List
-                    primaryText="List with Avatar"
-                    leftAvatar={avatar}
-                    rightIcon={googleIcon}
-                />
-                <List
-                    primaryText="List with Avatar"
-                    leftAvatar={avatar}
-                    rightIcon={googleIcon}
-                />
-                <List
-                    primaryText="List with Avatar"
-                    leftAvatar={avatar}
-                    rightIcon={googleIcon}
-                />
+
+                <Subheader text="Avatar with text single-line list"/>
+                {data.single.avatarText.map(user =>(
+                    <List
+                        leftAvatar={
+                            <Avatar src={user.avatar}/>
+                        }
+                        primaryText={user.name}
+                        rightIcon={
+                            <Icon name="message" size={24}/>
+                        }
+                    />
+                ))}
+
+                <Subheader text="Text only two-line list"/>
+                {data.two.text.map(list => (
+                    <List
+                        lines={2}
+                        primaryText={list.primaryText}
+                        secondaryText={list.secondaryText}
+                    />
+                ))}
             </View>
         );
     }
@@ -92,8 +82,8 @@ const styles = StyleSheet.create({
 });
 
 const data = {
-    single:{
-        text:[
+    single: {
+        text: [
             {
                 primaryText: 'Inbox'
             },
@@ -107,7 +97,7 @@ const data = {
                 primaryText: 'Drafts'
             }
         ],
-        iconText:[
+        iconText: [
             {
                 primaryText: 'Inbox',
                 leftIcon: 'inbox'
@@ -123,6 +113,25 @@ const data = {
             {
                 primaryText: 'Spam',
                 leftIcon: 'block-helper'
+            }
+        ],
+        avatarText: [
+            {name: 'jsa', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg'},
+            {name: 'pixeliris', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg'},
+            {name: 'ok', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg'},
+            {name: 'marcosmoralez', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/marcosmoralez/128.jpg'},
+            {name: 'sindresorhus', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg'}
+        ]
+    },
+    two: {
+        text: [
+            {
+                primaryText: 'Profile photo',
+                secondaryText:'Change your Google+ profile photo'
+            },
+            {
+                primaryText: 'Show your status',
+                secondaryText: 'Your status is visible to everyone you use with'
             }
         ]
     }
