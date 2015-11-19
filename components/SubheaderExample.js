@@ -30,12 +30,12 @@ export default class SubheaderExample extends Component {
             <View>
                 <Subheader text="Subheader normal"/>
                 <Subheader text="Subheader with color" primaryColor={COLOR[`${primary}500`].color}/>
-                <Subheader text="Subheader normal, has FAB"
-                           hasFAB={true}
+                <Subheader text="Subheader normal, inset"
+                           inset={true}
                 />
-                <Subheader text="Subheader with color, has FAB"
+                <Subheader text="Subheader with color, inset"
                            primaryColor={COLOR[`${primary}500`].color}
-                           hasFAB={true}
+                           inset={true}
                 />
             </View>
         );
