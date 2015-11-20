@@ -4,6 +4,8 @@ import React, {
     PropTypes,
     View,
     ScrollView,
+    TouchableNativeFeedback,
+    TouchableWithoutFeedback,
     Text
 } from 'react-native';
 import {
@@ -13,7 +15,8 @@ import {
     Icon,
     Subheader,
     Avatar,
-    Divider
+    Divider,
+    Button
 } from 'react-native-material-design-components';
 
 export default class ListExample extends Component {
@@ -30,8 +33,9 @@ export default class ListExample extends Component {
         const {
             primary
             } = this.props;
+        const primaryColor = COLOR[`${primary}500`].color;
         return (
-            <View>
+            <View style={{backgroundColor: '#fff'}}>
                 <Subheader text="Text only single-line list" primaryColor={COLOR[`${primary}500`].color}/>
                 {data.single.text.map(list => (
                     <List
@@ -48,14 +52,14 @@ export default class ListExample extends Component {
                 ))}
 
                 <Subheader text="Avatar with text single-line list" primaryColor={COLOR[`${primary}500`].color}/>
-                {data.single.avatarText.map(user =>(
+                {data.single.avatarText.map((user, i) =>(
                     <List
                         leftAvatar={
                             <Avatar src={user.avatar}/>
                         }
                         primaryText={user.name}
                         rightIcon={
-                            <Icon name="message" size={24}/>
+                            <Icon name="message" size={24} color={i < 2 ? primaryColor : undefined}/>
                         }
                     />
                 ))}
@@ -75,11 +79,13 @@ export default class ListExample extends Component {
                             leftIcon={
                             list.leftIcon ? (<Icon name={list.leftIcon} size={24} color={COLOR[`${primary}500`].color}/>) : (<View></View>)
                         }
+                            onLeftIconClicked={()=>{console.log(list.leftIcon)}}
                             primaryText={list.primaryText}
                             secondaryText={list.secondaryText}
                             rightIcon={
-                            list.rightIcon && (<Icon name={list.rightIcon} size={24} />)
+                            list.rightIcon && (<Icon name={list.rightIcon} size={24}  />)
                         }
+                            onRightIconClicked={()=>{console.log(list.rightIcon)}}
                         />
                         {i === 1 && <Divider inset={true}/>}
                     </View>
@@ -99,6 +105,7 @@ export default class ListExample extends Component {
                             <Text> - {mail.body}</Text>
                         </Text>
                         }
+                            captionText={`${i * 6 + 1}min ago`}
                         />
                         {i < data.two.avatarText.length - 1 && <Divider inset={true}/>}
                     </View>
@@ -119,6 +126,7 @@ export default class ListExample extends Component {
                                     rightIcon={
                                         <Icon name="information" size={24}/>
                                     }
+                                    onRightIconClicked={()=>{console.log('information')}}
                                 />
                             </View>
                         ))}
@@ -144,6 +152,7 @@ export default class ListExample extends Component {
                                 }
                             ]}
                             lines={3}
+                            captionText={`${i * 6 + 1}min ago`}
                         />
                         {i < data.two.avatarText.length - 1 && <Divider/>}
                     </View>
@@ -159,6 +168,7 @@ export default class ListExample extends Component {
                         leftIcon={
                             <Icon name="checkbox-blank-outline" size={24}/>
                         }
+                        onLeftIconClicked={()=>{console.log('checked')}}
                     />
                 ))}
 
@@ -183,8 +193,13 @@ export default class ListExample extends Component {
                             ]}
                             lines={3}
                             rightIcon={
+                                i < 2 ?
+                                <Icon name="star" size={24} color={primaryColor}/>
+                                :
                                 <Icon name="star-outline" size={24}/>
                             }
+                            onRightIconClicked={()=>{console.log('star')}}
+                            captionText={`${i * 6 + 1}min ago`}
                         />
                         {i < data.two.avatarText.length - 1 && <Divider inset={true}/>}
                     </View>
