@@ -126,7 +126,7 @@ export default class ListExample extends Component {
                     </View>
                 ))}
 
-                <Subheader text="Avatar with text and icon three-line list"
+                <Subheader text="Text only three-line list"
                            primaryColor={COLOR[`${primary}500`].color}/>
                 {data.two.avatarText.map((mail, i) => (
                     <View>
@@ -146,6 +146,47 @@ export default class ListExample extends Component {
                             lines={3}
                         />
                         {i < data.two.avatarText.length - 1 && <Divider/>}
+                    </View>
+                ))}
+
+                <Subheader text="Icon with text three-line list"
+                           primaryColor={COLOR[`${primary}500`].color}/>
+                {data.three.textIcon.map((list) => (
+                    <List
+                        primaryText={list.primaryText}
+                        secondaryText={list.secondaryText}
+                        lines={3}
+                        leftIcon={
+                            <Icon name="checkbox-blank-outline" size={24}/>
+                        }
+                    />
+                ))}
+
+                <Subheader text="Avatar with text three-line list" primaryColor={COLOR[`${primary}500`].color}/>
+                {data.two.avatarText.map((mail, i) => (
+                    <View>
+                        <List
+                            primaryText={mail.name}
+                            leftAvatar={
+                            <Avatar src={mail.avatar}/>
+                        }
+                            secondaryTextMoreLine={[
+                                {
+                                    text: mail.subject,
+                                    style: {
+                                        color: 'rgba(0,0,0,.87)'
+                                    },
+                                },
+                                {
+                                    text: mail.body
+                                }
+                            ]}
+                            lines={3}
+                            rightIcon={
+                                <Icon name="star-outline" size={24}/>
+                            }
+                        />
+                        {i < data.two.avatarText.length - 1 && <Divider inset={true}/>}
                     </View>
                 ))}
             </View>
@@ -194,11 +235,11 @@ const data = {
             }
         ],
         avatarText: [
-            {name: 'jsa', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg'},
-            {name: 'pixeliris', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg'},
-            {name: 'ok', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg'},
-            {name: 'marcosmoralez', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/marcosmoralez/128.jpg'},
-            {name: 'sindresorhus', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg'}
+            {name: 'Jsa', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg'},
+            {name: 'Pixeliris', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg'},
+            {name: 'Ok', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg'},
+            {name: 'Marcosmoralez', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/marcosmoralez/128.jpg'},
+            {name: 'Sindresorhus', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg'}
         ]
     },
     two: {
@@ -236,31 +277,31 @@ const data = {
         ],
         avatarText: [
             {
-                name: 'pixeliris',
+                name: 'Pixeliris',
                 avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg',
                 subject: 'Brunch this Weekend?',
                 body: 'Hello！ I’ll be your neighbourhood. How about we have branch together in my home this weekend.'
             },
             {
-                name: 'jsa',
+                name: 'Jsa',
                 avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
                 subject: 'Verify Email',
                 body: 'Hey Ben Zhao,Please click the link below to verify your account: '
             },
             {
-                name: 'ok',
+                name: 'Ok',
                 avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg',
                 subject: 'Please confirm your email',
                 body: 'Hi Ben,Thanks so much for joining Pinterest! To finish signing up, you just need to confirm that we got your email right.'
             },
             {
-                name: 'marcosmoralez',
+                name: 'Marcosmoralez',
                 avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/marcosmoralez/128.jpg',
                 subject: '开始使用Airbnb',
                 body: 'Airbnb欢迎您,在Airbnb，您可以向世界上任何一个地方的当地人预订房间、民宅、甚至城堡。'
             },
             {
-                name: 'sindresorhus',
+                name: 'Sindresorhus',
                 avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/sindresorhus/128.jpg',
                 subject: 'Welcome to Genymotion - User account activation',
                 body: 'Hi benzhao,Your user account with the e-mail address benzhao1988@gmail.com has been created. '
@@ -305,5 +346,18 @@ const data = {
                 ]
             }
         ]
+    },
+    three: {
+        textIcon: [
+            {
+                primaryText: 'Notifications',
+                secondaryText: 'Notify me about updates of app or games I downloaded'
+            },
+            {
+                primaryText: 'Sound',
+                secondaryText: 'Auto-update apps at anytime. Data charges my apply'
+            }
+        ]
     }
+
 };
