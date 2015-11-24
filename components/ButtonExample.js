@@ -4,7 +4,8 @@ import React, {
     PropTypes,
     View,
     ScrollView,
-    Text
+    Text,
+    InteractionManager
 } from 'react-native';
 import {
     Button,
@@ -18,15 +19,27 @@ var typographyStyle = StyleSheet.create(TYPO);
 export default class ButtonExample extends Component {
     constructor(props) {
         super(props);
-        // Operations usually carried out in componentWillMount go here
     }
 
     static defaultProps = {};
     static propTypes = {};
-    state = {};
+    state = {
+        renderPlaceholderOnly: true
+    };
+
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
+    }
 
     render = () => {
         var { primary } =  this.props;
+
+        if (this.state.renderPlaceholderOnly) {
+            return this._renderPlaceholderView();
+        }
+
         return (
             <View>
                 <Subheader text="Light Theme"/>
@@ -49,7 +62,14 @@ export default class ButtonExample extends Component {
                 </View>
             </View>
         );
-    }
+    };
+
+    _renderPlaceholderView = () => (
+        <View>
+        </View>
+    )
+
+
 }
 
 const styles = StyleSheet.create({

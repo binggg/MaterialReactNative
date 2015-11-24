@@ -4,7 +4,8 @@ import React, {
     PropTypes,
     View,
     ScrollView,
-    Text
+    Text,
+    InteractionManager
 } from 'react-native';
 import {
     Checkbox,
@@ -18,25 +19,37 @@ const colorTypes = ['50', '100', '200', '300', '400', '500', '600', '700', '800'
 export default class ColorExample extends Component {
     constructor(props) {
         super(props);
-        // Operations usually carried out in componentWillMount go here
     }
 
     static defaultProps = {};
     static propTypes = {};
-    state = {};
+    state = {
+        renderPlaceholderOnly: true
+    };
+
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
+    }
 
     render = () => {
         var { primary } =  this.props;
+
+        if (this.state.renderPlaceholderOnly) {
+            this._renderPlaceholderView();
+        }
+
         return (
             <View>
-                <Subheader text="Text Color" />
+                <Subheader text="Text Color"/>
                 <View style={styles.content}>
                     {colorTypes.map(type => (
                         COLOR[`${primary}${type}`] &&
                         <Text style={[TYPO.paperFontTitle, COLOR[`${primary}${type}`]]}>{primary}{type}</Text>
                     ))}
                 </View>
-                <Subheader text="Background Color" />
+                <Subheader text="Background Color"/>
                 <View style={{height:600}}>
                     {colorTypes.map(type => (
                         COLOR[`${primary}${type}`] &&
@@ -48,7 +61,12 @@ export default class ColorExample extends Component {
 
             </View>
         );
-    }
+    };
+
+    _renderPlaceholderView = () => (
+        <View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

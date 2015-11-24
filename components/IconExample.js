@@ -5,9 +5,10 @@ import React, {
     View,
     ScrollView,
     Text,
-    ListView
+    ListView,
+    InteractionManager
 } from 'react-native';
-import { TYPO, COLOR, ICON_MAP, Icon  } from 'react-native-material-design-components';
+import { TYPO, COLOR, ICON_NAME, Icon  } from 'react-native-material-design-components';
 
 export default class IconExample extends Component {
     constructor(props) {
@@ -20,10 +21,21 @@ export default class IconExample extends Component {
     state = {
         dataSource: new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
-        }).cloneWithRows(Object.keys(ICON_MAP))
+        }).cloneWithRows(ICON_NAME),
+        renderPlaceholderOnly: true
     };
 
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
+    }
+
     render = () => {
+        if (this.state.renderPlaceholderOnly) {
+            this._renderPlaceholderView();
+        }
+
         return (
             <ListView
                 dataSource={this.state.dataSource}
@@ -48,7 +60,12 @@ export default class IconExample extends Component {
                 </Text>
             </View>
         )
-    }
+    };
+
+    _renderPlaceholderView = () => (
+        <View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

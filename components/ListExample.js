@@ -6,7 +6,8 @@ import React, {
     ScrollView,
     TouchableNativeFeedback,
     TouchableWithoutFeedback,
-    Text
+    Text,
+    InteractionManager
 } from 'react-native';
 import {
     TYPO,
@@ -22,18 +23,30 @@ import {
 export default class ListExample extends Component {
     constructor(props) {
         super(props);
-        // Operations usually carried out in componentWillMount go here
     }
 
     static defaultProps = {};
     static propTypes = {};
-    state = {};
+    state = {
+        renderPlaceholderOnly: true
+    };
+
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
+    }
 
     render = () => {
         const {
             primary
             } = this.props;
         const primaryColor = COLOR[`${primary}500`].color;
+
+        if (this.state.renderPlaceholderOnly) {
+            this._renderPlaceholderView();
+        }
+
         return (
             <View style={{backgroundColor: '#fff'}}>
                 <Subheader text="Text only single-line list" primaryColor={COLOR[`${primary}500`].color}/>
@@ -79,13 +92,13 @@ export default class ListExample extends Component {
                             leftIcon={
                             list.leftIcon ? (<Icon name={list.leftIcon} size={24} color={COLOR[`${primary}500`].color}/>) : (<View></View>)
                         }
-                            onLeftIconClicked={()=>{console.log(list.leftIcon)}}
+                            onLeftIconClick={()=>{console.log(list.leftIcon)}}
                             primaryText={list.primaryText}
                             secondaryText={list.secondaryText}
                             rightIcon={
                             list.rightIcon && (<Icon name={list.rightIcon} size={24}  />)
                         }
-                            onRightIconClicked={()=>{console.log(list.rightIcon)}}
+                            onRightIconClick={()=>{console.log(list.rightIcon)}}
                         />
                         {i === 1 && <Divider inset={true}/>}
                     </View>
@@ -126,7 +139,7 @@ export default class ListExample extends Component {
                                     rightIcon={
                                         <Icon name="information" size={24}/>
                                     }
-                                    onRightIconClicked={()=>{console.log('information')}}
+                                    onRightIconClick={()=>{console.log('information')}}
                                 />
                             </View>
                         ))}
@@ -168,7 +181,7 @@ export default class ListExample extends Component {
                         leftIcon={
                             <Icon name="checkbox-blank-outline" size={24}/>
                         }
-                        onLeftIconClicked={()=>{console.log('checked')}}
+                        onLeftIconClick={()=>{console.log('checked')}}
                     />
                 ))}
 
@@ -198,7 +211,7 @@ export default class ListExample extends Component {
                                 :
                                 <Icon name="star-outline" size={24}/>
                             }
-                            onRightIconClicked={()=>{console.log('star')}}
+                            onRightIconClick={()=>{console.log('star')}}
                             captionText={`${i * 6 + 1}min ago`}
                         />
                         {i < data.two.avatarText.length - 1 && <Divider inset={true}/>}
@@ -206,7 +219,12 @@ export default class ListExample extends Component {
                 ))}
             </View>
         );
-    }
+    };
+
+    _renderPlaceholderView = () => (
+        <View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

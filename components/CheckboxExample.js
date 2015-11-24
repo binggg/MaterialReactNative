@@ -4,7 +4,8 @@ import React, {
     PropTypes,
     View,
     ScrollView,
-    Text
+    Text,
+    InteractionManager
 } from 'react-native';
 import {
     Checkbox,
@@ -26,11 +27,23 @@ export default class CheckboxExample extends Component {
     static defaultProps = {};
     static propTypes = {};
     state = {
-        group2Selected: []
+        group2Selected: [],
+        renderPlaceholderOnly: true
     };
+
+    componentDidMount() {
+        InteractionManager.runAfterInteractions(() => {
+            this.setState({renderPlaceholderOnly: false});
+        });
+    }
 
     render = () => {
         var { primary } =  this.props;
+
+        if (this.state.renderPlaceholderOnly) {
+            return this._renderPlaceholderView();
+        }
+
         return (
             <View>
                 <Subheader text="Light Theme" />
@@ -66,7 +79,12 @@ export default class CheckboxExample extends Component {
                 </View>
             </View>
         );
-    }
+    };
+
+    _renderPlaceholderView = () => (
+        <View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
