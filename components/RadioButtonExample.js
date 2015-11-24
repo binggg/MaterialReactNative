@@ -34,7 +34,7 @@ export default class RadioButtonExample extends Component {
             <View>
                 <Subheader text="Light Theme" />
                 <View>
-                    <RadioButtonGroup ref="Group1" primary={primary} name="group1" onSelect={(value) => {
+/*                    <RadioButtonGroup ref="Group1" primary={primary} name="group1" onSelect={(value) => {
                             this.setState({group1Selected: value});
                         }}>
                         <RadioButton value="1" label="RadioButton On" checked={true}/>
@@ -47,7 +47,7 @@ export default class RadioButtonExample extends Component {
                         <Text style={{flex:1}}>Selected {this.state.group1Selected}</Text>
                         <Button raised={true} value="Press to select 2"
                                 onPress={()=>{this.refs.Group1.value = 2}}/>
-                    </View>
+                    </View>*/
                 </View>
 
                 <Subheader text="Dark Theme" />
