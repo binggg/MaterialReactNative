@@ -25,7 +25,7 @@ export default class AvatarExample extends Component {
             } = this.props;
         return (
             <View>
-                /*<Subheader text="Avatar use image"/>
+                <Subheader text="Avatar use image"/>
                 <View style={styles.avatarContainer}>
                     <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg"/>
                     <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg"/>
@@ -47,7 +47,7 @@ export default class AvatarExample extends Component {
                     <Avatar size={60} src="http://mrn.js.org/user/image/favicon.png"/>
                     <Avatar size={80} src="http://mrn.js.org/user/image/favicon.png"/>
                     <Avatar size={120} src="http://mrn.js.org/user/image/favicon.png"/>
-                </View>*/
+                </View>
             </View>
         );
     }

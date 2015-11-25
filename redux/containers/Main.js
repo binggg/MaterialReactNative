@@ -37,11 +37,6 @@ import AvatarExample from '../../components/AvatarExample';
 const store = configureStore();
 const routers = [
     {
-        name: 'home',
-        text: 'HOME',
-        icon: 'home'
-    },
-    {
         name: 'Color',
         icon: 'auto-fix'
     },
@@ -100,7 +95,7 @@ export default class Main extends Component {
                     </Text>
                 </View>
                 <ScrollView style={styles.page}>
-                    {routers.map(router => (
+                    {routers.sort(function(a,b){return a.name>b.name?1:-1}).map(router => (
                         <List
                             primaryColor={main && router.name === main.currRouter ? COLOR[`${main.primary}500`].color: 'rgba(0,0,0,.87)'}
                             onPress={()=>{
