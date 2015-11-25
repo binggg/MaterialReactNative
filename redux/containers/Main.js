@@ -18,7 +18,7 @@ import {
     Icon,
     Toolbar,
     List
-} from 'react-native-material-design-components';
+} from 'mrn';
 import {
     changeRouter,
     changePrimary
@@ -32,6 +32,7 @@ import IconExample from '../../components/IconExample';
 import ListExample from '../../components/ListExample';
 import SubheaderExample from '../../components/SubheaderExample';
 import ChangeTheme from './ChangeTheme';
+import AvatarExample from '../../components/AvatarExample';
 
 const store = configureStore();
 const routers = [
@@ -74,14 +75,12 @@ const routers = [
     {
         name: 'ChangeTheme',
         icon: 'brush'
+    },
+    {
+        name: 'Avatar'
     }
 ];
 export default class Main extends Component {
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(changePrimary('paperRed'));
-    }
-
     render = () => {
         let {
             main,
@@ -279,6 +278,20 @@ export default class Main extends Component {
                         </ScrollView>
                     </View>
                 );
+            case 'Avatar':
+                return (
+                    <View style={styles.page}>
+                        <Toolbar
+                            navIconName="menu"
+                            title={router.name}
+                            primary={this.props.main.primary}
+                            onIconClicked={()=>this.drawerRef.openDrawer()}
+                        />
+                        <View style={styles.page}>
+                            <AvatarExample primary={this.props.main.primary}/>
+                        </View>
+                    </View>
+                )
         }
     }
 }

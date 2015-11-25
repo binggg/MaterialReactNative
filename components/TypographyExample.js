@@ -6,7 +6,7 @@ import React, {
     ScrollView,
     Text
 } from 'react-native';
-import { TYPO, COLOR  } from 'react-native-material-design-components';
+import { TYPO, COLOR  } from 'mrn';
 
 export default class TypographyExample extends Component {
     constructor(props) {

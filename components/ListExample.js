@@ -18,7 +18,7 @@ import {
     Avatar,
     Divider,
     Button
-} from 'react-native-material-design-components';
+} from 'mrn';
 
 export default class ListExample extends Component {
     constructor(props) {

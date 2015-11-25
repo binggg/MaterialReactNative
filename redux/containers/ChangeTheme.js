@@ -11,7 +11,7 @@ import {
     RadioButton,
     RadioButtonGroup,
     TYPO,
-    COLOR  } from 'react-native-material-design-components';
+    COLOR  } from 'mrn';
 import { typography,color } from 'react-native-material-design-styles'
 import { CHANGE_PRIMARY, changePrimary } from '../modules/main';
 

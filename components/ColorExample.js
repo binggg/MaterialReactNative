@@ -13,7 +13,7 @@ import {
     TYPO,
     COLOR,
     Subheader
-} from 'react-native-material-design-components';
+} from 'mrn';
 
 const colorTypes = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', 'A100', 'A200', 'A400', 'A700'];
 export default class ColorExample extends Component {

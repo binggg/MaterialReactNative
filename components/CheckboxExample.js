@@ -14,7 +14,7 @@ import {
     TYPO,
     COLOR,
     Subheader
-} from 'react-native-material-design-components';
+} from 'mrn';
 
 var typographyStyle = StyleSheet.create(TYPO);
 
@@ -60,7 +60,7 @@ export default class CheckboxExample extends Component {
                     </CheckboxGroup>
                     <View style={[styles.content,styles.action]}>
                         <Text style={{flex:1}}>Selected {this.state.group2Selected.join(',')}</Text>
-                        <Button raised={true} value="Press to select 1,2,6" onPress={()=>{this.refs.CheckboxGroup1.value = ['1','2','6']}} />
+                        <Button raised={true} primary={primary} value="Press to select 1,2,6" onPress={()=>{this.refs.CheckboxGroup1.value = ['1','2','6']}} />
                     </View>
 
                 </View>

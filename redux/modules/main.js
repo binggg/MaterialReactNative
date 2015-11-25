@@ -1,16 +1,17 @@
 import createReducer from './createReducer.js'
+import { PRIMARY } from 'mrn';
 
 export const CHANGE_PRIMARY = 'CHANGE_PRIMARY';
 export const CHANGE_ROUTER = 'CHANGE_ROUTER';
 
-export const main = createReducer({primary: 'paperOrange',currRouter:'List'}, {
+export const main = createReducer({primary: PRIMARY, currRouter: 'Avatar'}, {
     [CHANGE_PRIMARY](state, action) {
-        return Object.assign({}, state,{
+        return Object.assign({}, state, {
             primary: action.primary
         });
     },
     [CHANGE_ROUTER](state, action) {
-        return Object.assign({},state,{
+        return Object.assign({}, state, {
             currRouter: action.router
         })
     }

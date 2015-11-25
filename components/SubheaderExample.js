@@ -10,7 +10,7 @@ import {
     TYPO,
     COLOR,
     Subheader
-} from 'react-native-material-design-components';
+} from 'mrn';
 
 export default class SubheaderExample extends Component {
     constructor(props) {

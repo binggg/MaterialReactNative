@@ -12,7 +12,7 @@ import {
     TYPO,
     COLOR,
     Subheader
-} from 'react-native-material-design-components';
+} from 'mrn';
 
 var typographyStyle = StyleSheet.create(TYPO);
 

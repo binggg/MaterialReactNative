@@ -8,7 +8,7 @@ import React, {
     ListView,
     InteractionManager
 } from 'react-native';
-import { TYPO, COLOR, ICON_NAME, Icon  } from 'react-native-material-design-components';
+import { TYPO, COLOR, ICON_NAME, Icon  } from 'mrn';
 
 export default class IconExample extends Component {
     constructor(props) {
