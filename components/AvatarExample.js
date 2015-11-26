@@ -25,7 +25,7 @@ export default class AvatarExample extends Component {
             } = this.props;
         return (
             <View>
-                <Subheader text="Avatar use image"/>
+                <Subheader text="Avatar use image src"/>
                 <View style={styles.avatarContainer}>
                     <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg"/>
                     <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/pixeliris/128.jpg"/>
