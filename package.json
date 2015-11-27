@@ -6,8 +6,9 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "mrn": "^0.1.3",
     "react": "^0.14.2",
-    "react-native": "^0.13.2",
+    "react-native": "~0.13.2",
     "react-native-material-design-styles": "^0.2.4",
     "react-native-vector-icons": "^0.8.5",
     "react-redux": "^4.0.0",
