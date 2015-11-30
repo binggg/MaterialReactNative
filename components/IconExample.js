@@ -8,7 +8,7 @@ import React, {
     ListView,
     InteractionManager
 } from 'react-native';
-import { TYPO, COLOR, ICON_NAME, Icon  } from 'mrn';
+import { TYPO, COLOR, ICON_NAME, Icon, List  } from 'mrn';
 
 export default class IconExample extends Component {
     constructor(props) {
@@ -21,23 +21,15 @@ export default class IconExample extends Component {
     state = {
         dataSource: new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
-        }).cloneWithRows(ICON_NAME),
-        renderPlaceholderOnly: true
+        }).cloneWithRows(ICON_NAME)
     };
 
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.setState({renderPlaceholderOnly: false});
-        });
-    }
-
     render = () => {
-        if (this.state.renderPlaceholderOnly) {
-            this._renderPlaceholderView();
-        }
-
         return (
             <ListView
+                initialListSize={1}
+                scrollRenderAheadDistance={1}
+                removeClippedSubviews={true}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderIconItem}
             />
@@ -47,25 +39,14 @@ export default class IconExample extends Component {
     renderIconItem = (rowData) => {
         const { primary } = this.props;
         return (
-            <View style={styles.iconItem} key={rowData}>
-                <Icon name={rowData}
-                      size={24}
-                      color={COLOR[`${primary}500`].color}
-                      style={
-                        styles.icon
-                      }
-                />
-                <Text style={[TYPO.paperFontBody1,styles.text,{color: 'rgba(0,0,0,.87)'}]}>
-                    {rowData}
-                </Text>
-            </View>
+            <List
+                key={rowData}
+                leftIcon={
+                    <Icon name={rowData} size={24} color={COLOR[`${primary}500`].color}/>
+                }
+                primaryText={rowData}/>
         )
     };
-
-    _renderPlaceholderView = () => (
-        <View>
-        </View>
-    );
 }
 
 const styles = StyleSheet.create({

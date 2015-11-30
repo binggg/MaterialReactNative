@@ -23,22 +23,10 @@ export default class ColorExample extends Component {
 
     static defaultProps = {};
     static propTypes = {};
-    state = {
-        renderPlaceholderOnly: true
-    };
 
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.setState({renderPlaceholderOnly: false});
-        });
-    }
 
     render = () => {
         var { primary } =  this.props;
-
-        if (this.state.renderPlaceholderOnly) {
-            this._renderPlaceholderView();
-        }
 
         return (
             <View>
@@ -62,11 +50,6 @@ export default class ColorExample extends Component {
             </View>
         );
     };
-
-    _renderPlaceholderView = () => (
-        <View>
-        </View>
-    )
 }
 
 const styles = StyleSheet.create({

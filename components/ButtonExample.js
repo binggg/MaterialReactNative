@@ -23,22 +23,9 @@ export default class ButtonExample extends Component {
 
     static defaultProps = {};
     static propTypes = {};
-    state = {
-        renderPlaceholderOnly: true
-    };
-
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.setState({renderPlaceholderOnly: false});
-        });
-    }
 
     render = () => {
         var { primary } =  this.props;
-
-        if (this.state.renderPlaceholderOnly) {
-            return this._renderPlaceholderView();
-        }
 
         return (
             <View>
@@ -63,11 +50,6 @@ export default class ButtonExample extends Component {
             </View>
         );
     };
-
-    _renderPlaceholderView = () => (
-        <View>
-        </View>
-    )
 
 
 }

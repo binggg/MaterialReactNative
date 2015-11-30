@@ -33,6 +33,7 @@ import ListExample from '../../components/ListExample';
 import SubheaderExample from '../../components/SubheaderExample';
 import ChangeTheme from './ChangeTheme';
 import AvatarExample from '../../components/AvatarExample';
+import ExpensiveScene from '../../components/ExpensiveScene';
 
 const store = configureStore();
 const routers = [
@@ -80,7 +81,7 @@ export default class Main extends Component {
         let {
             main,
             dispatch
-        } = this.props;
+            } = this.props;
         let initialRoute = {name: main && main.currRouter};
 
         var navigationView = (
@@ -95,7 +96,9 @@ export default class Main extends Component {
                     </Text>
                 </View>
                 <ScrollView style={styles.page}>
-                    {routers.sort(function(a,b){return a.name>b.name?1:-1}).map(router => (
+                    {routers.sort(function (a, b) {
+                        return a.name > b.name ? 1 : -1
+                    }).map(router => (
                         <List
                             primaryColor={main && router.name === main.currRouter ? COLOR[`${main.primary}500`].color: 'rgba(0,0,0,.87)'}
                             onPress={()=>{
@@ -157,7 +160,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <ColorExample primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <ColorExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -171,7 +176,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <TypographyExample primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <TypographyExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -185,7 +192,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <ButtonExample primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <ButtonExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -199,7 +208,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <RadioButtonExample primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <RadioButtonExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -213,7 +224,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <CheckboxExample primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <CheckboxExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -226,9 +239,7 @@ export default class Main extends Component {
                             primary={this.props.main.primary}
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
-                        <View style={styles.page}>
-                            <IconExample primary={this.props.main.primary}/>
-                        </View>
+                        <IconExample primary={this.props.main.primary}/>
                     </View>
                 );
             case 'List':
@@ -241,7 +252,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <ListExample primary={this.props.main.primary}/>
+                            <ExpensiveScene loadingText="Waiting for a big wave components">
+                                <ListExample primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -269,7 +282,9 @@ export default class Main extends Component {
                             onIconClicked={()=>this.drawerRef.openDrawer()}
                         />
                         <ScrollView style={styles.page}>
-                            <ChangeTheme dispatch={this.props.dispatch} primary={this.props.main.primary}/>
+                            <ExpensiveScene>
+                                <ChangeTheme dispatch={this.props.dispatch} primary={this.props.main.primary}/>
+                            </ExpensiveScene>
                         </ScrollView>
                     </View>
                 );
@@ -293,7 +308,8 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
     page: {
-        flex: 1
+        flex: 1,
+        backgroundColor: COLOR.paperGrey100.color
     },
     content: {
         padding: 16

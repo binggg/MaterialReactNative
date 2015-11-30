@@ -43,7 +43,7 @@ export default class ListExample extends Component {
             } = this.props;
         const primaryColor = COLOR[`${primary}500`].color;
 
-        if (this.state.renderPlaceholderOnly) {
+        if(this.state.renderPlaceholderOnly) {
             this._renderPlaceholderView();
         }
 
@@ -221,10 +221,43 @@ export default class ListExample extends Component {
         );
     };
 
-    _renderPlaceholderView = () => (
-        <View>
-        </View>
-    );
+    _renderPlaceholderView = () => {
+        const {
+            primary
+            } = this.props;
+        const primaryColor = COLOR[`${primary}500`].color;
+        return (
+            <View>
+                <Subheader text="Text only single-line list" primaryColor={COLOR[`${primary}500`].color}/>
+                {data.single.text.map(list => (
+                    <List
+                        primaryText={list.primaryText}/>
+                ))}
+
+                <Subheader text="Icon with text single-line list" primaryColor={COLOR[`${primary}500`].color}/>
+                {data.single.iconText.map(list => (
+                    <List
+                        leftIcon={
+                            <Icon name={list.leftIcon} size={24}/>
+                        }
+                        primaryText={list.primaryText}/>
+                ))}
+
+                <Subheader text="Avatar with text single-line list" primaryColor={COLOR[`${primary}500`].color}/>
+                {data.single.avatarText.map((user, i) =>(
+                    <List
+                        leftAvatar={
+                            <Avatar src={user.avatar}/>
+                        }
+                        primaryText={user.name}
+                        rightIcon={
+                            <Icon name="message" size={24} color={i < 2 ? primaryColor : undefined}/>
+                        }
+                    />
+                ))}
+            </View>
+        )
+    };
 }
 
 const styles = StyleSheet.create({

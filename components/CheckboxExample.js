@@ -27,15 +27,8 @@ export default class CheckboxExample extends Component {
     static defaultProps = {};
     static propTypes = {};
     state = {
-        group2Selected: [],
-        renderPlaceholderOnly: true
+        group2Selected: []
     };
-
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.setState({renderPlaceholderOnly: false});
-        });
-    }
 
     render = () => {
         var { primary } =  this.props;
@@ -80,11 +73,6 @@ export default class CheckboxExample extends Component {
             </View>
         );
     };
-
-    _renderPlaceholderView = () => (
-        <View>
-        </View>
-    )
 }
 
 const styles = StyleSheet.create({
